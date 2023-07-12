@@ -1,5 +1,5 @@
 /**
- * Basic Write Example code for InfluxDBClient library for Arduino
+ * Basic Write Example code for Client library for Arduino
  * Data can be immediately seen in a InfluxDB UI: wifi_status measurement
  * Enter WiFi and InfluxDB parameters below
  *
@@ -18,7 +18,7 @@ ESP8266WiFiMulti wifiMulti;
 #define DEVICE "ESP8266"
 #endif
 
-#include <InfluxDbClient.h>
+#include "influxdb/Client.h"
 
 // WiFi AP SSID
 #define WIFI_SSID "ssid"
@@ -39,7 +39,7 @@ ESP8266WiFiMulti wifiMulti;
 // InfluxDB client instance
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN);
 // InfluxDB client instance for InfluxDB 1
-//InfluxDBClient client(INFLUXDB_URL, INFLUXDB_DB_NAME);
+//Client client(INFLUXDB_URL, INFLUXDB_DB_NAME);
 
 // Data point
 Point sensor("wifi_status");

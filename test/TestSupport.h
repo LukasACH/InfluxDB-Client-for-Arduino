@@ -34,7 +34,7 @@
 #include <ESP8266WiFi.h>
 #endif
 
-#include "query/FluxParser.h"
+#include "../include/influxdb/query/FluxParser.h"
 
 void printFreeHeap();
 

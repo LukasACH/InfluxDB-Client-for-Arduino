@@ -1,10 +1,10 @@
 /**
  * 
- * InfluxDb.h: InfluxDB Client for Arduino
+ * WritePrecision.h: Write precision for InfluxDB Client for Arduino
  * 
  * MIT License
  * 
- * Copyright (c) 2018-2020 Tobias Schürg
+ * Copyright (c) 2020 InfluxData
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,36 +24,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-#ifndef _INFLUXDB_H_
-#define _INFLUXDB_H
+#ifndef _WRITE_PRECISION_H_
+#define _WRITE_PRECISION_H_
 
-#include "InfluxData.h"
+namespace influxdb {
 
-class Influxdb : public InfluxDBClient {
- public:
-  Influxdb(String host, uint16_t port = 8086);
-
-  void setDb(String db);
-  void setDbAuth(String db, String user, String pass);
-
-  void setVersion(uint16_t version);
-  void setBucket(String bucket);
-  void setOrg(String org);
-  void setToken(String token);
-  void setPort(uint16_t port);
-#if defined(ESP8266)
-  void setFingerPrint(const char *fingerPrint);
-#endif
-
-  void prepare(InfluxData data);
-  boolean write();
-
-  boolean write(InfluxData data);
-  boolean write(String data);
-
- private:
-  uint16_t _preparedPoints;
-  
-  void begin();
-};
-#endif
+// Enum WritePrecision defines constants for specifying InfluxDB write prcecision
+    enum class WritePrecision : uint8_t {
+        // Specifyies that points has no timestamp (default). Server will assign timestamp.
+        NoTime = 0,
+        // Seconds
+        S,
+        // Milli-seconds
+        MS,
+        // Micro-seconds
+        US,
+        // Nano-seconds
+        NS
+    };
+}
+#endif //_WRITE_PRECISION_H_

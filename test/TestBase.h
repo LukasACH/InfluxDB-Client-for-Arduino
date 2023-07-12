@@ -27,8 +27,8 @@
 #ifndef _ABSTRACT_TEST_H_
 #define _ABSTRACT_TEST_H_
 
-#include <InfluxDbClient.h>
-#include <InfluxDbCloud.h>
+#include "influxdb/Client.h"
+#include "influxdb/Cloud.h"
 #include "TestSupport.h"
 
 #define TEST_INIT(name)  int temp = failures;\

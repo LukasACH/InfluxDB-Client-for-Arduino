@@ -1,5 +1,5 @@
 /**
- * Buckets management Example code for InfluxDBClient library for Arduino
+ * Buckets management Example code for Client library for Arduino
  * Enter WiFi and InfluxDB parameters below
  *
  * This example supports only InfluxDB running from unsecure (http://...)
@@ -17,7 +17,7 @@ ESP8266WiFiMulti wifiMulti;
 #define DEVICE "ESP8266"
 #endif
 
-#include <InfluxDbClient.h>
+#include "influxdb/Client.h"
 
 // WiFi AP SSID
 #define WIFI_SSID "ssid"

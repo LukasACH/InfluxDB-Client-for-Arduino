@@ -1,5 +1,5 @@
 /**
- * QueryParams Example code for InfluxDBClient library for Arduino.
+ * QueryParams Example code for Client library for Arduino.
   * 
  * This example demonstrates querying using parameters inserted into the Flux query. We select WiFi signal level values bellow a certain threshold. 
  * WiFi signal is measured and stored in BasicWrite and SecureWrite examples.
@@ -20,8 +20,8 @@ ESP8266WiFiMulti wifiMulti;
 #define DEVICE "ESP8266"
 #endif
 
-#include <InfluxDbClient.h>
-#include <InfluxDbCloud.h>
+#include "influxdb/Client.h"
+#include "influxdb/Cloud.h"
 
 // WiFi AP SSID
 #define WIFI_SSID "SSID"

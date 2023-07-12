@@ -1,13 +1,13 @@
 /**
- *  Sketch for running InfluxDBClient tests.
+ *  Sketch for running Client tests.
  *  For compiling in VSCode add path to workspace ("${workspaceFolder}\\**")
  *  Most of the tests require running mock server: cd test/server & node server.js. It will print ip adresses of available network interfaces.
  *  Modify INFLUXDB_CLIENT_TESTING_SERVER_HOST to set the correct mock server address.
  * 
  */
 
-#include <InfluxDbClient.h>
-#include <InfluxDbCloud.h>
+#include "influxdb/Client.h"
+#include "influxdb/Cloud.h"
 
 #if defined(ESP32)
 #include <WiFi.h>

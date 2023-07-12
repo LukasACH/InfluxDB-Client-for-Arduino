@@ -27,11 +27,13 @@
 #ifndef _INFLUXDB_CLOUD_H_
 #define _INFLUXDB_CLOUD_H_
 
+namespace influxdb {
+
 // Root Certificate Authority of InfluxData Cloud 2 servers. 
 // Valid with all providers (AWS, Azure, GCP) 
 // ISRG Root X1
 // Valid until 2035-04-04T04:04:38Z
-const char InfluxDbCloud2CACert[] PROGMEM =  R"EOF( 
+    const char CloudCACert[] PROGMEM = R"EOF(
 -----BEGIN CERTIFICATE-----
 MIIFazCCA1OgAwIBAgIRAIIQz7DSQONZRGPgu2OCiwAwDQYJKoZIhvcNAQELBQAw
 TzELMAkGA1UEBhMCVVMxKTAnBgNVBAoTIEludGVybmV0IFNlY3VyaXR5IFJlc2Vh
@@ -64,5 +66,5 @@ mRGunUHBcnWEvgJBQl9nJEiU0Zsnvgc/ubhPgXRR4Xq37Z0j4r7g1SgEEzwxA57d
 emyPxgcYxn/eR44/KJ4EBs+lVDR3veyJm+kXQ99b21/+jh5Xos1AnX5iItreGCc=
 -----END CERTIFICATE-----
 )EOF";
-
+}
 #endif //_INFLUXDB_CLOUD_H_

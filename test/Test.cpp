@@ -28,9 +28,9 @@
 #include "Test.h"
 #include "TestSupport.h"
 
-#include <Platform.h>
-#include "../src/Version.h"
-#include "InfluxData.h"
+#include "influxdb/Platform.h"
+#include "influxdb/Version.h"
+#include "influxdb/InfluxData.h"
 
 #define INFLUXDB_CLIENT_TESTING_BAD_URL "http://127.0.0.1:999"
 

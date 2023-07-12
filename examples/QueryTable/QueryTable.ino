@@ -1,5 +1,5 @@
 /**
- * QueryTable Example code for InfluxDBClient library for Arduino.
+ * QueryTable Example code for Client library for Arduino.
  * 
  * This example demonstrates querying recent history of values of WiFi signal level measured and stored in BasicWrite and SecureWrite examples.
  * 
@@ -21,8 +21,8 @@ ESP8266WiFiMulti wifiMulti;
 #define DEVICE "ESP8266"
 #endif
 
-#include <InfluxDbClient.h>
-#include <InfluxDbCloud.h>
+#include "influxdb/Client.h"
+#include "influxdb/Cloud.h"
 
 // WiFi AP SSID
 #define WIFI_SSID "SSID"

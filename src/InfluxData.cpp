@@ -24,16 +24,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-#include "InfluxData.h"
-#include "util/helpers.h"
+#include "influxdb/InfluxData.h"
+#include "influxdb/util/helpers.h"
 
-void InfluxData::setTimestamp(long int seconds) 
-{ 
-    _data->timestamp = timeStampToString(seconds,9);
-    strcat(_data->timestamp, "000000000"); 
-}
+namespace influxdb {
 
- String InfluxData::toString() const { 
-    String t; 
-    return createLineProtocol(t); 
+    void InfluxData::setTimestamp(long int seconds) {
+        _data->timestamp = timeStampToString(seconds, 9);
+        strcat(_data->timestamp, "000000000");
+    }
+
+    String InfluxData::toString() const {
+        String t;
+        return createLineProtocol(t);
+    }
 }

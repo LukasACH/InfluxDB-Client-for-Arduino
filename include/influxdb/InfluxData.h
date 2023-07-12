@@ -1,10 +1,10 @@
 /**
  * 
- * CsvReader.h: Simple Csv parser for comma separated values, with double quotes suppport
+ * InfluxData.h: InfluxDB Client for Arduino
  * 
  * MIT License
  * 
- * Copyright (c) 2020 InfluxData
+ * Copyright (c) 2018-2020 Tobias Schürg
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,28 +24,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
 */
-#ifndef _CSV_READER_
-#define _CSV_READER_
+#include "influxdb/Client.h"
 
-#include "HttpStreamScanner.h"
-#include <vector>
+namespace influxdb {
 
-/**
- * CsvReader parses csv line to token by ',' (comma) character.
- * It suppports escaped  quotes, excaped comma
- **/
-class CsvReader {
-public:
-    CsvReader(HttpStreamScanner *scanner);
-    ~CsvReader();
-    bool next();
-    void close();
-    std::vector<String> getRow();
-    int getError() const { return _error; };
-private:
-    void clearRow();
-    HttpStreamScanner *_scanner = nullptr;
-    std::vector<String> _row;
-    int _error = 0;
-};
-#endif //_CSV_READER_
+    class InfluxData : public Point {
+    public:
+        InfluxData(const String &measurement) : Point(measurement) {}
+
+        void addValue(const String &key, float value) { addField(key, value); }
+
+        void addValueString(const String &key, String value) { addField(key, value); }
+
+        void setTimestamp(long int seconds);
+
+        String toString() const;
+    };
+
+}

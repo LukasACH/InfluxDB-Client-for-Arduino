@@ -1,5 +1,5 @@
 /**
- * Secure Write Example code for InfluxDBClient library for Arduino
+ * Secure Write Example code for Client library for Arduino
  * Enter WiFi and InfluxDB parameters below
  *
  * Demonstrates connection to any InfluxDB instance accesible via:
@@ -22,8 +22,8 @@ ESP8266WiFiMulti wifiMulti;
 #define WIFI_AUTH_OPEN ENC_TYPE_NONE
 #endif
 
-#include <InfluxDbClient.h>
-#include <InfluxDbCloud.h>
+#include "influxdb/Client.h"
+#include "influxdb/Cloud.h"
 
 // WiFi AP SSID
 #define WIFI_SSID "SSID"
@@ -55,7 +55,7 @@ ESP8266WiFiMulti wifiMulti;
 // InfluxDB client instance with preconfigured InfluxCloud certificate
 InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
 // InfluxDB client instance without preconfigured InfluxCloud certificate for insecure connection 
-//InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN);
+//Client client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN);
 
 // Data point
 Point sensorStatus("wifi_status");

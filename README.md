@@ -134,10 +134,10 @@ Connection parameters are almost the same as above, the only difference is that 
 #define INFLUXDB_BUCKET "bucket"
 ```
 
-You need to pass an additional parameter to the client constructor, which is a certificate of the server to trust. The constant `InfluxDbCloud2CACert` contains the InfluxDB Cloud 2 CA certificate, which is predefined in this library:
+You need to pass an additional parameter to the client constructor, which is a certificate of the server to trust. The constant `CloudCACert` contains the InfluxDB Cloud 2 CA certificate, which is predefined in this library:
 ```cpp
 // Single InfluxDB instance
-InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, InfluxDbCloud2CACert);
+InfluxDBClient client(INFLUXDB_URL, INFLUXDB_ORG, INFLUXDB_BUCKET, INFLUXDB_TOKEN, CloudCACert);
 ```
 Read more about [secure connection](#secure-connection).
 
@@ -347,7 +347,7 @@ Connecting to a secured server requires configuring the client to trust the serv
 :memo: In ESP32 arduino SDK (1.0.4), `WiFiClientSecure` doesn't support fingerprint to validate the server certificate.
 
 The certificate (in PEM format) or SHA1 fingerprint should be placed in flash memory to save RAM.
-Code bellow is an example certificate in PEM format. Valid InfluxDB 2 Cloud CA certificate is included in the library in the constant `InfluxDbCloud2CACert`, located in the `InfluxDBCloud.h`.
+Code bellow is an example certificate in PEM format. Valid InfluxDB 2 Cloud CA certificate is included in the library in the constant `CloudCACert`, located in the `InfluxDBCloud.h`.
 
 You can use a custom server certificate by exporting it, e.g. using a web browser:
 ```cpp
@@ -478,7 +478,7 @@ It provides getter methods for supported flux types:
 | ----- | ------ |  --- |
 | long | getLong() | long |
 | unsignedLong | getUnsignedLong() | unsigned long |
-| dateTime:RFC3339, dateTime:RFC3339Nano | getDateTime() |  [FluxDateTime](src/query/FluxTypes.h#L100) |
+| dateTime:RFC3339, dateTime:RFC3339Nano | getDateTime() |  [FluxDateTime](include/influxdb/query/FluxTypes.h#L100) |
 | bool | getBool() | bool |
 | double | bool | double |
 | string, base64binary, duration | getString() | String |

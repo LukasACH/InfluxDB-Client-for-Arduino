@@ -1,9 +1,11 @@
 
-#include "HTTPService.h"
-#include "Platform.h"
-#include "Version.h"
+#include "influxdb/HTTPService.h"
+#include "influxdb/Platform.h"
+#include "influxdb/Version.h"
 
-#include "util/debug.h"
+#include "influxdb/util/debug.h"
+
+namespace influxdb {
 
 static const char UserAgent[] PROGMEM = "influxdb-client-arduino/" INFLUXDB_CLIENT_VERSION " (" INFLUXDB_CLIENT_PLATFORM " " INFLUXDB_CLIENT_PLATFORM_VERSION ")";
 
@@ -216,4 +218,5 @@ bool HTTPService::afterRequest(int expectedStatusCode, httpResponseCallback cb, 
         _httpClient->end();
     }
     return ret;
+}
 }

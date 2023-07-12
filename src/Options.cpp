@@ -25,32 +25,44 @@
  * SOFTWARE.
 */
 #include <Arduino.h>
-#include "Options.h"
-#include "util/helpers.h"
+#include "influxdb/Options.h"
+#include "influxdb/util/helpers.h"
 
-WriteOptions& WriteOptions::addDefaultTag(const String &name, const String &value) { 
-    if(_defaultTags.length() > 0) {
-        _defaultTags += ',';
+namespace influxdb {
+
+    WriteOptions &WriteOptions::addDefaultTag(const String &name, const String &value) {
+        if (_defaultTags.length() > 0) {
+            _defaultTags += ',';
+        }
+        char *s = escapeKey(name);
+        _defaultTags += s;
+        delete[] s;
+        s = escapeKey(value);
+        _defaultTags += '=';
+        _defaultTags += s;
+        delete[] s;
+        return *this;
     }
-    char *s = escapeKey(name);
-    _defaultTags += s;
-    delete [] s;
-    s = escapeKey(value);
-    _defaultTags += '=';
-    _defaultTags += s;
-    delete [] s;
-    return *this; 
-}
 
-void WriteOptions::printTo(Print &dest) const {
-    dest.println("WriteOptions:");
-    dest.print("\t_precision: "); dest.println((uint8_t)_writePrecision);
-    dest.print("\t_batchSize: "); dest.println(_batchSize);
-    dest.print("\t_bufferSize: "); dest.println(_bufferSize);
-    dest.print("\t_flushInterval: "); dest.println(_flushInterval);
-    dest.print("\t_retryInterval: "); dest.println(_retryInterval);
-    dest.print("\t_maxRetryInterval: "); dest.println(_maxRetryInterval);
-    dest.print("\t_maxRetryAttempts: "); dest.println(_maxRetryAttempts);
-    dest.print("\t_defaultTags: "); dest.println(_defaultTags);
-    dest.print("\t_useServerTimestamp: "); dest.println(_useServerTimestamp);
+    void WriteOptions::printTo(Print &dest) const {
+        dest.println("WriteOptions:");
+        dest.print("\t_precision: ");
+        dest.println((uint8_t) _writePrecision);
+        dest.print("\t_batchSize: ");
+        dest.println(_batchSize);
+        dest.print("\t_bufferSize: ");
+        dest.println(_bufferSize);
+        dest.print("\t_flushInterval: ");
+        dest.println(_flushInterval);
+        dest.print("\t_retryInterval: ");
+        dest.println(_retryInterval);
+        dest.print("\t_maxRetryInterval: ");
+        dest.println(_maxRetryInterval);
+        dest.print("\t_maxRetryAttempts: ");
+        dest.println(_maxRetryAttempts);
+        dest.print("\t_defaultTags: ");
+        dest.println(_defaultTags);
+        dest.print("\t_useServerTimestamp: ");
+        dest.println(_useServerTimestamp);
+    }
 }

@@ -28,36 +28,45 @@
 #define _INFLUXDB_CLIENT_HELPERS_H
 
 #include <Arduino.h>
-#include <sys/time.h>  
+#include <sys/time.h>
+
+namespace influxdb {
 
 // Synchronize time with NTP servers and waits for completition. Prints waiting progress and final synchronized time to the serial.
 // Accurate time is necessary for certificate validion and writing points in batch
 // For the fastest time sync find NTP servers in your area: https://www.pool.ntp.org/zone/
-void timeSync(const char *tzInfo, const char* ntpServer1, const char* ntpServer2 = nullptr, const char* ntpServer3 = nullptr);
+    void timeSync(const char *tzInfo, const char *ntpServer1, const char *ntpServer2 = nullptr,
+                  const char *ntpServer3 = nullptr);
 
 // Create timestamp in offset from epoch. secFracDigits specify resulution. 0 - seconds, 3 - milliseconds, etc. Maximum and default is 9 - nanoseconds.
-unsigned long long getTimeStamp(struct timeval *tv, int secFracDigits = 3);
+    unsigned long long getTimeStamp(struct timeval *tv, int secFracDigits = 3);
 
 // Converts unsigned long long timestamp to String
-char *timeStampToString(unsigned long long timestamp, int extraCharsSpace = 0);
+    char *timeStampToString(unsigned long long timestamp, int extraCharsSpace = 0);
 
 // Escape invalid chars in measurement, tag key, tag value and field key
-char *escapeKey(const String &key, bool escapeEqual = true);
+    char *escapeKey(const String &key, bool escapeEqual = true);
 
 // Escape invalid chars in field value
-String escapeValue(const char *value);
+    String escapeValue(const char *value);
+
 // Encode URL string for invalid chars
-String urlEncode(const char* src);
+    String urlEncode(const char *src);
+
 // Returns true of string contains valid InfluxDB ID type
-bool isValidID(const char *idString);
+    bool isValidID(const char *idString);
+
 // Returns "true" if val is true, otherwise "false"
-const char *bool2string(bool val);
+    const char *bool2string(bool val);
+
 // Returns number of digits
-uint8_t getNumLength(long long l);
+    uint8_t getNumLength(long long l);
+
 // Like strdup, but uses new
-char *cloneStr(const char *str);
+    char *cloneStr(const char *str);
+
 // Like strlen, but accepts nullptr
-size_t strLen(const char *str);
+    size_t strLen(const char *str);
 
-
+}
 #endif //_INFLUXDB_CLIENT_HELPERS_H
